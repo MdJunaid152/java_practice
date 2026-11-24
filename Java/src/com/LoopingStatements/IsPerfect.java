@@ -4,34 +4,35 @@ import java.util.Scanner;
 
 public class IsPerfect {
 
-	static boolean isPerfect(int n) {
-		boolean value = false;
+	static boolean isPerfect(int num) {
+		if (num <= 1) {
+			return false;
+		}
 		int sum = 0;
-		for (int i = 1; i < n; i++) {
-			if (n % i == 0) {
+		for (int i = 1; i <= num / 2; i++) { 
+			if (num % i == 0) {
 				sum = sum + i;
 			}
 		}
-		if (sum == n) {
-			value = true;
-		}
-		return value;
+		return sum == num;
 	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a number : ");
+		System.out.println("Enter which perfect number you want (e.g., 1, 2, 3...) : ");
 		int n = sc.nextInt();
 
-		boolean value = isPerfect(n);
+		int count = 0;
+		int currentNumber = 1;
 
-		if (value) {
-			System.out.println("The given number is a perfect number ");
-
-		} else {
-			System.out.println("The given number is not a perfect number");
+		while (count < n) {
+			currentNumber++;
+			if (isPerfect(currentNumber)) {
+				count++;
+			}
 		}
 
+		System.out.println("The " + n + "th perfect number is: " + currentNumber);
+		sc.close();
 	}
-
 }
